@@ -1,4 +1,4 @@
-ulcerans_phylogeny
+# ulcerans_phylogeny
 
 First step is to install miniconda which will manage our environment.  
 
