@@ -11,13 +11,13 @@ We will create our working environement
 for that we need a file that we call environment.yaml
 
 ``` shell
-conda env create --name ulcerans_phylogenie --file environment.yaml
+conda env create --name ulcerans_phylogeny --file environment.yaml
 ```
 
 To activate the environment
 
 ``` shell
-conda activate ulcerans_phylogenie
+conda activate ulcerans_phylogeny
 ```
 
 To remove environment
