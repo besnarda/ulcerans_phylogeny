@@ -3,8 +3,6 @@ rule all:
         "plots/phylogeny_tree.svg"
 
 
-
-
 rule convert_fasta_to_phylip:
     input:
         fasta = "snippy/snippy_core.aln"

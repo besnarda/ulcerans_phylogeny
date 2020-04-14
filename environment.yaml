@@ -4,9 +4,12 @@ channels:
 dependencies:
   - bioconda::snakemake-minimal =5.4.5
   - bwa =0.7.17
-  - snippy =3.2
+  - snippy =4.6.0
   - trim-galore =0.6.5
   - phyml =3.3.20190909
+  - samtools =1.10
+  - emboss =6.6.0
+  - perl-bioperl =1.7.2
 # dependencies R:
 # ggtree
 # ape

@@ -33,3 +33,9 @@ check everything is ok with a 'dry-run' with -n option
 snakemake -n --snakefile ulcerans_phylogeny.rules plots/phylogeny_tree.svg
 snakemake --snakefile ulcerans_phylogeny.rules plots/phylogeny_tree.svg
 ``` 
+
+You can make the diagram of all the steps in the pipeline with the DAG function
+
+``` shell
+snakemake --dag --snakefile ulcerans_phylogeny.rules plots/phylogeny_tree.svg | dot -Tsvg > dag.svg
+```
