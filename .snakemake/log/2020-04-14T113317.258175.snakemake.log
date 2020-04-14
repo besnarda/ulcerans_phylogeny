@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	convert_fasta_to_phylip
+	1	create_phyml_tree
+	1	plot_phyml_tree
+	3
+
+[Tue Apr 14 11:33:17 2020]
+rule convert_fasta_to_phylip:
+    input: snippy/two_strains.aln
+    output: snippy/two_strains.phylip
+    jobid: 2
+    wildcards: align=two_strains
+
+[Tue Apr 14 11:33:17 2020]
+Error in rule convert_fasta_to_phylip:
+    jobid: 2
+    output: snippy/two_strains.phylip
+    shell:
+        ./scripts/Fasta2Phylip.pl snippy/two_strains.aln snippy/two_strains.phylip
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/t-iris-005/SOFTWARE/ulcerans_phylogeny/.snakemake/log/2020-04-14T113317.258175.snakemake.log

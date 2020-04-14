@@ -1,0 +1,26 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	run_snippy_on_compressed_fastq
+	2
+
+[Tue Apr 14 10:21:18 2020]
+rule run_snippy_on_compressed_fastq:
+    input: /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/1793-13_R1.fastq.gz, /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/327-8-12_R1.fastq.gz, /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/1793-13_R2.fastq.gz, /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/327-8-12_R2.fastq.gz, data/ref/Agy99.fa
+    output: snippy/1793-13/snps.csv, snippy/327-8-12/snps.csv
+    jobid: 1
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 9 of /home/t-iris-005/SOFTWARE/ulcerans_phylogeny/ulcerans_phylogeny.rules:
+Missing files after 5 seconds:
+snippy/327-8-12/snps.csv
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Removing output files of failed job run_snippy_on_compressed_fastq since they might be corrupted:
+snippy/1793-13/snps.csv
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/t-iris-005/SOFTWARE/ulcerans_phylogeny/.snakemake/log/2020-04-14T102118.551820.snakemake.log

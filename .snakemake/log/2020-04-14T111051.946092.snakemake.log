@@ -1,0 +1,40 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	run_snippy_core
+	2	run_snippy_on_compressed_fastq
+	3
+
+[Tue Apr 14 11:10:51 2020]
+rule run_snippy_on_compressed_fastq:
+    input: /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/327-8-12_R1.fastq.gz, /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/327-8-12_R2.fastq.gz, data/ref/Agy99.fa
+    output: snippy/327-8-12/snps.csv
+    jobid: 2
+    wildcards: sample=327-8-12
+
+[Tue Apr 14 11:14:24 2020]
+Finished job 2.
+1 of 3 steps (33%) done
+
+[Tue Apr 14 11:14:24 2020]
+rule run_snippy_on_compressed_fastq:
+    input: /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/1793-13_R1.fastq.gz, /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/1793-13_R2.fastq.gz, data/ref/Agy99.fa
+    output: snippy/1793-13/snps.csv
+    jobid: 1
+    wildcards: sample=1793-13
+
+[Tue Apr 14 11:17:55 2020]
+Finished job 1.
+2 of 3 steps (67%) done
+
+[Tue Apr 14 11:17:55 2020]
+rule run_snippy_core:
+    input: snippy/1793-13/snps.csv, snippy/327-8-12/snps.csv, data/ref/Agy99.fa
+    output: snippy/two_strains.aln
+    jobid: 0
+
+RuleException in line 23 of /home/t-iris-005/SOFTWARE/ulcerans_phylogeny/ulcerans_phylogeny.rules:
+'InputFiles' object has no attribute 'folders'

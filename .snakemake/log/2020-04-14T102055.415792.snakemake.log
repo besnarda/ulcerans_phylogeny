@@ -1,0 +1,25 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	run_snippy_core
+	1
+
+[Tue Apr 14 10:20:55 2020]
+rule run_snippy_core:
+    input: snippy/1793-13/, snippy/327-8-12/, data/ref/Agy99.fa
+    output: snippy/two_strains.aln
+    jobid: 0
+
+[Tue Apr 14 10:20:56 2020]
+Error in rule run_snippy_core:
+    jobid: 0
+    output: snippy/two_strains.aln
+    shell:
+        snippy-core --prefix snippy/two_strains  snippy/1793-13/ snippy/327-8-12/ --ref data/ref/Agy99.fa
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/t-iris-005/SOFTWARE/ulcerans_phylogeny/.snakemake/log/2020-04-14T102055.415792.snakemake.log

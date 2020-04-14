@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	create_phyml_tree
+	1	plot_phyml_tree
+	2
+
+[Tue Apr 14 11:39:09 2020]
+rule create_phyml_tree:
+    input: snippy/two_strains.phylip
+    output: phyml/two_strains_phyml_tree.txt
+    jobid: 1
+    wildcards: align=two_strains
+
+RuleException in line 42 of /home/t-iris-005/SOFTWARE/ulcerans_phylogeny/ulcerans_phylogeny.rules:
+NameError: The name 'align' is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}

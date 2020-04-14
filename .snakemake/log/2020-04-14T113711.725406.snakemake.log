@@ -1,0 +1,37 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	convert_fasta_to_phylip
+	1	create_phyml_tree
+	1	plot_phyml_tree
+	3
+
+[Tue Apr 14 11:37:11 2020]
+rule convert_fasta_to_phylip:
+    input: snippy/two_strains.aln
+    output: snippy/two_strains.phylip
+    jobid: 2
+    wildcards: align=two_strains
+
+[Tue Apr 14 11:37:11 2020]
+Finished job 2.
+1 of 3 steps (33%) done
+
+[Tue Apr 14 11:37:11 2020]
+rule create_phyml_tree:
+    input: snippy/two_strains.phylip
+    output: phyml/two_strains_phyml_tree.txt
+    jobid: 1
+    wildcards: align=two_strains
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 42 of /home/t-iris-005/SOFTWARE/ulcerans_phylogeny/ulcerans_phylogeny.rules:
+Missing files after 5 seconds:
+phyml/two_strains_phyml_tree.txt
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/t-iris-005/SOFTWARE/ulcerans_phylogeny/.snakemake/log/2020-04-14T113711.725406.snakemake.log

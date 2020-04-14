@@ -1,23 +1,51 @@
+SAMPLES = ["1793-13","327-8-12"]
+
 rule all:
     input:
-        "plots/phylogeny_tree.svg"
+        "plots/{align}_phylogeny_tree.svg"
 
+
+rule run_snippy_on_compressed_fastq:
+    input:
+        R1_fastq = "/home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/{sample}_R1.fastq.gz",
+        R2_fastq = "/home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/{sample}_R2.fastq.gz",
+        ref = "data/ref/Agy99.fa"
+    params:
+        outdir = "snippy/{sample}/"
+    output:
+        csv = "snippy/{sample}/snps.csv"
+    shell:
+        "snippy --force --cpus 8 --outdir {params.outdir} --reference {input.ref} --R1 {input.R1_fastq} --R2 {input.R2_fastq}  --mincov 10"
+
+
+
+rule run_snippy_core:
+    input:
+        csv = expand("snippy/{sample}/snps.csv",sample=SAMPLES),
+        ref = "data/ref/Agy99.fa"
+    params:
+        folders = expand("snippy/{sample}/",sample=SAMPLES),
+        prefix = "snippy/two_strains"
+    output:
+        "snippy/two_strains.aln"
+    shell:
+        "snippy-core --prefix {params.prefix}  {params.folders} --ref {input.ref}"
 
 rule convert_fasta_to_phylip:
     input:
-        fasta = "snippy/snippy_core.aln"
+        fasta = "snippy/{align}.aln"
     output:
-        phylip = "snippy/snippy_core.phylip"
+        phylip = "snippy/{align}.phylip"
     shell:
-        "./scripts/Fasta2Phylip.pl {input.fasta} {output.phylip}"
+        "perl ./scripts/Fasta2Phylip.pl {input.fasta} {output.phylip}"
 
 rule create_phyml_tree:
     input: 
-        alignement = "snippy/snippy_core.phylip"
+        alignement = "snippy/{align}.phylip"
     output:
-        tree = "phyml/phyml_tree.txt"
+        tree = "phyml/{align}_phyml_tree.txt"
     shell:
-        "phyml -i {input.alignement}; mv {input.alignement}_phyml_tree.txt phyml/phyml_tree.txt;"
+        "phyml -i {input.alignement}; mv {input.alignement}_phyml_tree.txt {output.tree};"
 
 
 # there we need a file called summary_strains with all info on our strains
@@ -25,11 +53,11 @@ rule create_phyml_tree:
 
 rule plot_phyml_tree:
     input:
-        script = "/home/t-iris-005/scripts-inserm2019/plot_phyml_tree.R",
-        tree = "phyml/phyml_tree.txt",
+        script = "scripts/plot_phyml_tree.R",
+        tree = "phyml/{align}_phyml_tree.txt",
         info = "data/summary_strains.xlsx"
     output:
-        plot = "plots/phylogeny_tree.svg"
+        plot = "plots/{align}_phylogeny_tree.svg"
     shell:
         "Rscript {input.script} {input.tree} {input.info} {output.plot}"
 

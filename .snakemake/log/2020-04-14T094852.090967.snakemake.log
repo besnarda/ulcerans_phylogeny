@@ -1,0 +1,25 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	run_snippy_on_compressed_fastq
+	1
+
+[Tue Apr 14 09:48:52 2020]
+rule run_snippy_on_compressed_fastq:
+    input: /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/1793-13_R1.fastq.gz, /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/1793-13_R2.fastq.gz, data/ref/Agy99.fa
+    output: snippy/1793-13/snps.csv
+    jobid: 0
+
+[Tue Apr 14 09:48:52 2020]
+Error in rule run_snippy_on_compressed_fastq:
+    jobid: 0
+    output: snippy/1793-13/snps.csv
+    shell:
+        snippy --cpus 8 --outdir snippy/1793-13/ --reference data/ref/Agy99.fa --R1 /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/1793-13_R1.fastq.gz --R2 /home/t-iris-005/0-RAW_DATA/Genomes_Benin_samples/1793-13_R2.fastq.gz  --mincov 10
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/t-iris-005/SOFTWARE/ulcerans_phylogeny/.snakemake/log/2020-04-14T094852.090967.snakemake.log
