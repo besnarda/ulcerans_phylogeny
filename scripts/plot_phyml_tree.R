@@ -31,7 +31,7 @@ print(paste0("This is ",version))
 arguments <- docopt(doc, version = version)
 
 # test with 
-# arguments <- docopt(doc,args = c("phyml/425_strains_phyml_tree.txt","data/summary_strains.xlsx","--color Country"),version = "plot_phyml_tree 0.1")
+# arguments <- docopt(doc,args = c("phyml/425_strains_phyml_tree.txt","data/summary_strains.xlsx","plots/425_strains_tree.svg","--color Country"),version = "plot_phyml_tree 0.1")
 # print(arguments)
 
 ##################################################
